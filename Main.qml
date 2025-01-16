@@ -34,6 +34,19 @@ Window {
         }
 
         color: "#1e1e1e"
+
+        AudioInfoBox
+        {
+            id: firstSong
+
+            anchors
+            {
+                verticalCenter: parent.verticalCenter
+                left: parent.left
+                right: parent.right
+                margins: 20
+            }
+        }
     }
 
     Rectangle
