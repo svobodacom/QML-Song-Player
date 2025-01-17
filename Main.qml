@@ -1,8 +1,8 @@
 import QtQuick
 
 Window {
-    width: 640
-    height: 480
+    width: 800
+    height: 550
     visible: true
     title: qsTr("SONG PLAYER")
 
@@ -44,8 +44,49 @@ Window {
                 verticalCenter: parent.verticalCenter
                 left: parent.left
                 right: parent.right
-                margins: 20
+                margins: 30
             }
+
+            songIndex: 0
+            title: "Whatever Will Be Will Be"
+            authorName: "Pixies"
+            imageColor: "red"
+        }
+
+        AudioInfoBox
+        {
+            id: secondSong
+
+            anchors
+            {
+                verticalCenter: parent.verticalCenter
+                left: parent.left
+                right: parent.right
+                margins: 30
+            }
+
+            songIndex: 1
+            title: "Symphone No. 5"
+            authorName: "Van Beethoven"
+            imageColor: "green"
+        }
+
+        AudioInfoBox
+        {
+            id: thirdSong
+
+            anchors
+            {
+                verticalCenter: parent.verticalCenter
+                left: parent.left
+                right: parent.right
+                margins: 30
+            }
+
+            songIndex: 2
+            title: "Real REP"
+            authorName: "9 Gramm"
+            imageColor: "blue"
         }
     }
 
@@ -62,6 +103,14 @@ Window {
 
         height: 100
         color: "#333333"
+    }
+
+    QtObject
+    {
+        id: playerController
+        property int currentSongIndex: 0
+        property int songCount: 3
+        property bool playing: false
     }
 
 

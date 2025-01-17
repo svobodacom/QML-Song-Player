@@ -37,9 +37,9 @@ Text
     color: "white"
     wrapMode: Text.WrapAtWordBoundaryOrAnywhere
 
-    font:
+    font
     {
-        pixelSize: 20
+        pixelSize: 24
         bold: true
     }
 }
@@ -50,17 +50,18 @@ Text
     anchors
     {
         top: parent.verticalCenter
-        left: titleText.right
-        topMargin: 5
+        left: albumImage.right
+        margins: 20
+        topMargin: 1
         right: parent.right
     }
 
     color: "grey"
     wrapMode: Text.WrapAtWordBoundaryOrAnywhere
 
-    font:
+    font
     {
-        pixelSize: 16
+        pixelSize: 20
     }
 }
 
