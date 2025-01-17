@@ -111,6 +111,35 @@ Window {
         property int currentSongIndex: 0
         property int songCount: 3
         property bool playing: false
+
+        function playPause()
+        {
+            playing = !playing
+        }
+
+        function switchToPreviousSong()
+        {
+            if (currentSongIndex > 0)
+            {
+                currentSongIndex--
+            }
+            else
+            {
+                currentSongIndex = songCount - 1
+            }
+        }
+
+        function switchToNextSong()
+        {
+            if (currentSongIndex + 1 >= songCount)
+            {
+                currentSongIndex = 0
+            }
+            else
+            {
+                currentSongIndex++
+            }
+        }
     }
 
 

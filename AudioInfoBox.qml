@@ -9,6 +9,8 @@ property alias title: titleText.text
 property alias authorName: authorText.text
 property alias imageColor: albumImage.color
 
+visible: playerController.currentSongIndex === root.songIndex
+
 Rectangle
 {
     id: albumImage
