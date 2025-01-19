@@ -4,7 +4,7 @@ Item
 {
     id: root
 
-    property color color: "grey"
+    property color color: "#F7FAAF"
     property alias text: buttonText.text
 
     signal clicked()
