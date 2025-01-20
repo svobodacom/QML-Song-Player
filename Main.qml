@@ -52,7 +52,7 @@ Window {
             songIndex: 0
             title: "Whatever Will Be Will Be"
             authorName: "Pixies"
-            imageColor: "red"
+            imageSource: "images/WillBe.png"
         }
 
         AudioInfoBox
@@ -70,7 +70,7 @@ Window {
             songIndex: 1
             title: "Symphone No. 5"
             authorName: "Van Beethoven"
-            imageColor: "green"
+            imageSource: "images/Bethoven.png"
         }
 
         AudioInfoBox
@@ -88,7 +88,7 @@ Window {
             songIndex: 2
             title: "Real REP"
             authorName: "9 Gramm"
-            imageColor: "blue"
+            imageSource: "images/9gramm.png"
         }
     }
 
@@ -112,32 +112,32 @@ Window {
             anchors.centerIn: parent
             spacing: 20
 
-            TextButton
+            ImageButton
             {
                 id: previousButton
-                width: 50
-                height: 50
-                text: "<"
+                width: 64
+                height: 64
+                source: "images/prev_icon.png"
 
                 onClicked: playerController.switchToPreviousSong()
             }
 
-            TextButton
+            ImageButton
             {
                 id: playPauseButton
-                width: 75
-                height: 50
-                text: playerController.playing ? "Pause" : "Play"
+                width: 64
+                height: 64
+                source: playerController.playing ? "images/pause_icon.png" : "images/play_icon.png"
 
                 onClicked: playerController.playPause()
             }
 
-            TextButton
+            ImageButton
             {
                     id: nextButton
-                    width: 50
-                    height: 50
-                    text: ">"
+                    width: 64
+                    height: 64
+                    source: "images/next_icon.png"
 
                     onClicked: playerController.switchToNextSong()
             }
