@@ -53,6 +53,7 @@ Window {
             title: "Whatever Will Be Will Be"
             authorName: "Pixies"
             imageSource: "images/WillBe.png"
+            videoSource: "qrc:/SongPlayer/images/sera.mp4"
         }
 
         AudioInfoBox
