@@ -1,4 +1,5 @@
-import QtQuick
+ import QtQuick
+ import com.company.PlayerController
 
 Window {
     width: 800
@@ -120,7 +121,7 @@ Window {
                 height: 64
                 source: "images/prev_icon.png"
 
-                onClicked: playerController.switchToPreviousSong()
+                onClicked: PlayerController.switchToPreviousSong()
             }
 
             ImageButton
@@ -128,9 +129,9 @@ Window {
                 id: playPauseButton
                 width: 64
                 height: 64
-                source: playerController.playing ? "images/pause_icon.png" : "images/play_icon.png"
+                source: PlayerController.playing ? "images/pause_icon.png" : "images/play_icon.png"
 
-                onClicked: playerController.playPause()
+                onClicked: PlayerController.playPause()
             }
 
             ImageButton
@@ -140,48 +141,8 @@ Window {
                     height: 64
                     source: "images/next_icon.png"
 
-                    onClicked: playerController.switchToNextSong()
+                    onClicked: PlayerController.switchToNextSong()
             }
         }
-    }
-
-
-    QtObject
-    {
-        id: playerController
-        property int currentSongIndex: 0
-        property int songCount: 3
-        property bool playing: false
-
-        function playPause()
-        {
-            playing = !playing
-        }
-
-        function switchToPreviousSong()
-        {
-            if (currentSongIndex > 0)
-            {
-                currentSongIndex--
-            }
-            else
-            {
-                currentSongIndex = songCount - 1
-            }
-        }
-
-        function switchToNextSong()
-        {
-            if (currentSongIndex + 1 >= songCount)
-            {
-                currentSongIndex = 0
-            }
-            else
-            {
-                currentSongIndex++
-            }
-        }
-    }
-
-
+    } 
 }
