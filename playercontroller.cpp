@@ -1,9 +1,17 @@
 #include "playercontroller.h"
+#include <QMediaDevices>
+#include <QAudioDevice>
+#include <QAudioOutput>
 
 PlayerController::PlayerController(QObject *parent)
     : QObject{parent}
 {
+    const auto &audioOutputs = QMediaDevices::audioOutputs();
 
+    if (!audioOutputs.isEmpty())
+    {
+        m_mediaPlayer.setAudioOutput(new QAudioOutput(&m_mediaPlayer));
+    }
 }
 
 /////////////////////////////////////////////////
@@ -61,4 +69,25 @@ void PlayerController::playPause()
 {
     m_playing = !m_playing;
     emit playingChanged();
+
+    if (m_playing)
+    {
+        m_mediaPlayer.play();
+    }
+    else
+    {
+        m_mediaPlayer.pause();
+    }
+}
+
+
+void PlayerController::changeAudioSource(const QUrl &source)
+{
+    m_mediaPlayer.stop();
+    m_mediaPlayer.setSource(source);
+
+    if (m_playing)
+    {
+        m_mediaPlayer.play();
+    }
 }

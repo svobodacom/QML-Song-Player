@@ -1,5 +1,5 @@
- import QtQuick
- import com.company.PlayerController
+import QtQuick
+import com.company.PlayerController
 
 Window {
     width: 800
@@ -50,11 +50,15 @@ Window {
                 margins: 30
             }
 
-            songIndex: 0
-            title: "Whatever Will Be Will Be"
-            authorName: "Pixies"
-            imageSource: "images/WillBe.png"
-            videoSource: "qrc:/SongPlayer/images/sera.mp4"
+            infoProvider
+            {
+                songIndex: 0
+                title: "Whatever Will Be Will Be"
+                authorName: "Pixies"
+                imageSource: "images/WillBe.png"
+                videoSource: "qrc:/SongPlayer/images/sera.mp4"
+                audioSource: "qrc:/SongPlayer/images/sera.mp4"
+            }
         }
 
         AudioInfoBox
@@ -69,10 +73,14 @@ Window {
                 margins: 30
             }
 
-            songIndex: 1
-            title: "Symphone No. 5"
-            authorName: "Van Beethoven"
-            imageSource: "images/Bethoven.png"
+            infoProvider
+            {
+                songIndex: 1
+                title: "Symphone No. 5"
+                authorName: "Van Beethoven"
+                imageSource: "images/Bethoven.png"
+                audioSource: "qrc:/SongPlayer/images/betkhoven.mp3"
+            }
         }
 
         AudioInfoBox
@@ -87,10 +95,14 @@ Window {
                 margins: 30
             }
 
-            songIndex: 2
-            title: "Real REP"
-            authorName: "9 Gramm"
-            imageSource: "images/9gramm.png"
+            infoProvider
+            {
+                songIndex: 2
+                title: "Real REP"
+                authorName: "9 Gramm"
+                imageSource: "images/9gramm.png"
+                audioSource: "qrc:/SongPlayer/images/9_gramm.mp3"
+            }
         }
     }
 
@@ -136,13 +148,13 @@ Window {
 
             ImageButton
             {
-                    id: nextButton
-                    width: 64
-                    height: 64
-                    source: "images/next_icon.png"
+                id: nextButton
+                width: 64
+                height: 64
+                source: "images/next_icon.png"
 
-                    onClicked: PlayerController.switchToNextSong()
+                onClicked: PlayerController.switchToNextSong()
             }
         }
-    } 
+    }
 }

@@ -1,100 +1,110 @@
 import QtQuick
 import QtMultimedia
 import com.company.PlayerController
+import SongPlayer
 
 Item
 {
-id: root
+    id: root
 
-required property int songIndex
-property alias title: titleText.text
-property alias authorName: authorText.text
-property alias imageSource: albumImage.source
-property alias videoSource: albumVideo.source
+    readonly property AudioInfo infoProvider: AudioInfo { }
 
-visible: PlayerController.currentSongIndex === root.songIndex
+    visible: PlayerController.currentSongIndex === infoProvider.songIndex
 
-Image
-{
-    id: albumImage
-
-    anchors
+    Image
     {
-        verticalCenter: parent.verticalCenter
-        left: parent.left
+        id: albumImage
+
+        anchors
+        {
+            verticalCenter: parent.verticalCenter
+            left: parent.left
+        }
+
+        width: 150
+        height: 150
+
+        source: infoProvider.imageSource
     }
 
-    width: 150
-    height: 150
-}
-
-Video
-{
-    id: albumVideo
-    anchors
+    Video
     {
-        verticalCenter: parent.verticalCenter
-        left: parent.left
+        id: albumVideo
+        anchors
+        {
+            verticalCenter: parent.verticalCenter
+            left: parent.left
+        }
+
+        width: 150
+        height: 150
+        loops: MediaPlayer.Infinite
+        volume: 0
+
+        source: infoProvider.videoSource
     }
 
-    width: 150
-    height: 150
-    loops: MediaPlayer.Infinite
-    volume: 1
-}
-
-Text
-{
-    id: titleText
-    anchors
+    Text
     {
-        bottom: parent.verticalCenter
-        left: albumImage.right
-        margins: 20
-        right: parent.right
+        id: titleText
+        anchors
+        {
+            bottom: parent.verticalCenter
+            left: albumImage.right
+            margins: 20
+            right: parent.right
+        }
+
+        color: "white"
+        wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+        text: infoProvider.title
+
+        font
+        {
+            pixelSize: 24
+            bold: true
+        }
     }
 
-    color: "white"
-    wrapMode: Text.WrapAtWordBoundaryOrAnywhere
-
-    font
+    Text
     {
-        pixelSize: 24
-        bold: true
-    }
-}
+        id: authorText
+        anchors
+        {
+            top: parent.verticalCenter
+            left: albumImage.right
+            margins: 20
+            topMargin: 1
+            right: parent.right
+        }
 
-Text
-{
-    id: authorText
-    anchors
-    {
-        top: parent.verticalCenter
-        left: albumImage.right
-        margins: 20
-        topMargin: 1
-        right: parent.right
+        color: "grey"
+        wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+        text: infoProvider.authorName
+
+        font
+        {
+            pixelSize: 20
+        }
     }
 
-    color: "grey"
-    wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+    onVisibleChanged:
+    {
+        if (visible)
+        {
+            albumVideo.play()
+            PlayerController.changeAudioSource(infoProvider.audioSource)
+        }
+        else
+        {
+            albumVideo.seek(0)
+            albumVideo.stop()
+        }
+    }
 
-    font
+    Component.onCompleted:
     {
-        pixelSize: 20
+        if (PlayerController.currentSongIndex === infoProvider.songIndex)
+            PlayerController.changeAudioSource(infoProvider.audioSource)
     }
-}
-
-onVisibleChanged:
-{
-    if (visible)
-    {
-        albumVideo.play()
-    }
-    else
-    {
-        albumVideo.seek(0)
-        albumVideo.stop()
-    }
-}
 }

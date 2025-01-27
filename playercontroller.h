@@ -1,6 +1,7 @@
 #ifndef PLAYERCONTROLLER_H
 #define PLAYERCONTROLLER_H
 
+#include <QMediaPlayer>
 #include <QObject>
 
 class PlayerController : public QObject
@@ -26,6 +27,7 @@ public slots:
     // second way to expose C++ functions to QML put them to public slots modificator
     void switchToPreviousSong();
     void playPause();
+    void changeAudioSource(const QUrl &source);
 
 signals:
 
@@ -37,6 +39,7 @@ private:
     int m_currentSongIndex = 0;
     int m_songCount = 3;
     bool m_playing = false;
+    QMediaPlayer m_mediaPlayer;
 };
 
 #endif // PLAYERCONTROLLER_H
