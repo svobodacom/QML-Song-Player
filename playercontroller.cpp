@@ -13,6 +13,10 @@ PlayerController::PlayerController(QObject *parent)
     {
         m_mediaPlayer.setAudioOutput(new QAudioOutput(&m_mediaPlayer));
     }
+
+    addAudio("Whatever Will Be Will Be", "Pixies", QUrl("qrc:/SongPlayer/images/sera.mp4"), QUrl("qrc:/SongPlayer/images/WillBe.png"));
+    addAudio("Symphone No. 5", "Van Beethoven", QUrl("qrc:/SongPlayer/images/betkhoven.mp3"), QUrl("qrc:/SongPlayer/images/Bethoven.png"));
+    addAudio("Real REP", "9 Gramm", QUrl("qrc:/SongPlayer/images/9_gramm.mp3"), QUrl("qrc:/SongPlayer/images/9gramm.png"));
 }
 
 /////////////////////////////////////////////////
@@ -181,6 +185,8 @@ void PlayerController::removeAudio(int index)
 {
     if (index >= 0 && index < m_audioList.length())
     {
+        beginRemoveRows(QModelIndex(), index, index);
+
         AudioInfo* toRemove = m_audioList[index];
 
         if (toRemove == m_currentSong)
@@ -204,5 +210,17 @@ void PlayerController::removeAudio(int index)
 
         m_audioList.removeAt(index);
         toRemove->deleteLater();
+
+        endRemoveRows();
     }
 }
+
+
+void PlayerController::switchToAudioByIndex(int index)
+{
+if (index >= 0 && index < m_audioList.length())
+    {
+        setCurrentSong(m_audioList[index]);
+    }
+}
+

@@ -21,6 +21,19 @@ Window {
 
         height: 50
         color: "#5F8575"
+
+        ImageButton
+        {
+            id: listButton
+            anchors.right: parent.right
+            anchors.rightMargin: 15
+            anchors.verticalCenter: parent.verticalCenter
+            width: 45
+            height: 45
+            source: "images/list.png"
+
+            onClicked: playlistPanel.hidden = false
+        }
     }
 
 
@@ -156,5 +169,17 @@ Window {
                 onClicked: PlayerController.switchToNextSong()
             }
         }
+    }
+
+    PlaylistPanel
+    {
+        id: playlistPanel
+
+        anchors
+        {
+            top: topbar.bottom
+        }
+
+        x: hidden ? parent.width : parent.width - width
     }
 }

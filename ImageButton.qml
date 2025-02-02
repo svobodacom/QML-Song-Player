@@ -8,6 +8,7 @@ Image
 
     opacity: buttonMouseArea.containsPress ? 0.75 : 1
     mipmap: true
+    fillMode: Image.PreserveAspectFit
 
     MouseArea
     {

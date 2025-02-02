@@ -48,6 +48,7 @@ public slots:
                   const QUrl& imageSource, const QUrl& videoSource = QUrl());
 
     void removeAudio(int index);
+    void switchToAudioByIndex(int index);
 
 signals:
     void playingChanged();
