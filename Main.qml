@@ -26,13 +26,23 @@ Window {
         {
             id: listButton
             anchors.right: parent.right
-            anchors.rightMargin: 15
+            anchors.rightMargin: 20
             anchors.verticalCenter: parent.verticalCenter
-            width: 45
-            height: 45
+            width: 40
+            height: 40
             source: "images/list.png"
 
-            onClicked: playlistPanel.hidden = false
+            onClicked:
+            {
+                if (playlistPanel.hidden === true)
+                {
+                    playlistPanel.hidden = false
+                }
+                else
+                {
+                    playlistPanel.hidden = true
+                }
+            }
         }
     }
 
@@ -53,7 +63,7 @@ Window {
 
         AudioInfoBox
         {
-            id: firstSong
+            id: songInfo
 
             anchors
             {
@@ -63,59 +73,6 @@ Window {
                 margins: 30
             }
 
-            infoProvider
-            {
-                songIndex: 0
-                title: "Whatever Will Be Will Be"
-                authorName: "Pixies"
-                imageSource: "images/WillBe.png"
-                videoSource: "qrc:/SongPlayer/images/sera.mp4"
-                audioSource: "qrc:/SongPlayer/images/sera.mp4"
-            }
-        }
-
-        AudioInfoBox
-        {
-            id: secondSong
-
-            anchors
-            {
-                verticalCenter: parent.verticalCenter
-                left: parent.left
-                right: parent.right
-                margins: 30
-            }
-
-            infoProvider
-            {
-                songIndex: 1
-                title: "Symphone No. 5"
-                authorName: "Van Beethoven"
-                imageSource: "images/Bethoven.png"
-                audioSource: "qrc:/SongPlayer/images/betkhoven.mp3"
-            }
-        }
-
-        AudioInfoBox
-        {
-            id: thirdSong
-
-            anchors
-            {
-                verticalCenter: parent.verticalCenter
-                left: parent.left
-                right: parent.right
-                margins: 30
-            }
-
-            infoProvider
-            {
-                songIndex: 2
-                title: "Real REP"
-                authorName: "9 Gramm"
-                imageSource: "images/9gramm.png"
-                audioSource: "qrc:/SongPlayer/images/9_gramm.mp3"
-            }
         }
     }
 
@@ -138,6 +95,8 @@ Window {
         {
             anchors.centerIn: parent
             spacing: 20
+            enabled: !!PlayerController.currentSong
+            opacity: enabled ? 1 : 0.3
 
             ImageButton
             {

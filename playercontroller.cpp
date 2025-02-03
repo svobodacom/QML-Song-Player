@@ -14,7 +14,7 @@ PlayerController::PlayerController(QObject *parent)
         m_mediaPlayer.setAudioOutput(new QAudioOutput(&m_mediaPlayer));
     }
 
-    addAudio("Whatever Will Be Will Be", "Pixies", QUrl("qrc:/SongPlayer/images/sera.mp4"), QUrl("qrc:/SongPlayer/images/WillBe.png"));
+    addAudio("Whatever Will Be Will Be", "Pixies", QUrl("qrc:/SongPlayer/images/sera.mp4"), QUrl("qrc:/SongPlayer/images/WillBe.png"), QUrl("qrc:/SongPlayer/images/sera.mp4"));
     addAudio("Symphone No. 5", "Van Beethoven", QUrl("qrc:/SongPlayer/images/betkhoven.mp3"), QUrl("qrc:/SongPlayer/images/Bethoven.png"));
     addAudio("Real REP", "9 Gramm", QUrl("qrc:/SongPlayer/images/9_gramm.mp3"), QUrl("qrc:/SongPlayer/images/9gramm.png"));
 }
